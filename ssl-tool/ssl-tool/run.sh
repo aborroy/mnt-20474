@@ -116,14 +116,19 @@ keytool -import -trustcacerts -noprompt -alias ssl.alfresco.ca -file ca/certs/ca
 keytool -importcert -noprompt -alias ssl.repo -file repository.cer \
 -keystore ${SOLR_KEYSTORES_DIR}/ssl.repo.client.truststore -storetype JKS -storepass $PASS
 
+keytool -importcert -noprompt -alias ssl.repo.client -file solr.cer \
+-keystore ${SOLR_KEYSTORES_DIR}/ssl.repo.client.truststore -storetype JKS -storepass $PASS
+
 # Include SOLR Certificate in SOLR Keystore
 # Also adding CA Certificate for historical reasons
 cp solr.p12 ${SOLR_KEYSTORES_DIR}
 
 # Create SOLR stores password files
-ECHO "aliases=alfresco.ca
+ECHO "aliases=alfresco.ca,ssl.repo,ssl.repo.client
 keystore.password=$PASS
-alfresco.ca.password=$PASS" > ${SOLR_KEYSTORES_DIR}/ssl-truststore-passwords.properties
+alfresco.ca.password=$PASS
+ssl.repo.password=$PASS
+ssl.repo.client.password=$PASS" > ${SOLR_KEYSTORES_DIR}/ssl-truststore-passwords.properties
 
 ECHO "aliases=1
 keystore.password=$PASS

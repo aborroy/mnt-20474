@@ -163,26 +163,27 @@ services:
             #Alfresco needs to know how to call solr
             SOLR_SOLR_HOST: "solr6"
             SOLR_SOLR_PORT: "8983"
-            SOLR_SOLR_PORT_SSL: "8983"
             SOLR_SSL_TRUST_STORE: "/opt/alfresco-insight-engine/keystore/ssl.repo.client.truststore"
             SOLR_SSL_TRUST_STORE_PASSWORD: "kT9X6oe68t"
-            SOLR_SSL_TRUST_STORE_TYPE: "JKS"
-            SOLR_SSL_KEY_STORE: "/opt/alfresco-insight-engine/keystore/solr.p12"
+            SOLR_SSL_TRUST_STORE_TYPE: "JCEKS"
+            SOLR_SSL_KEY_STORE: "/opt/alfresco-insight-engine/keystore/ssl.repo.client.keystore"
             SOLR_SSL_KEY_STORE_PASSWORD: "kT9X6oe68t"
-            SOLR_SSL_KEY_STORE_TYPE: "PKCS12"
+            SOLR_SSL_KEY_STORE_TYPE: "JCEKS"
             SOLR_SSL_NEED_CLIENT_AUTH: "true"
             #Create the default alfresco and archive cores
             SOLR_CREATE_ALFRESCO_DEFAULTS: "alfresco,archive"
             SOLR_JAVA_MEM: "-Xms2g -Xmx2g"
             SOLR_OPTS: "
+                -Djavax.net.ssl.keyStoreType=JCEKS
+                -Djavax.net.ssl.trustStoreType=JCEKS
                 -Dsolr.ssl.checkPeerName=false
                 -Dsolr.allow.unsafe.resourceloading=true
-                -Dalfresco.encryption.ssl.keystore.location=/opt/alfresco-insight-engine/keystore/solr.p12
+                -Dalfresco.encryption.ssl.keystore.location=/opt/alfresco-insight-engine/keystore/ssl.repo.client.keystore
                 -Dalfresco.encryption.ssl.keystore.passwordFileLocation=/opt/alfresco-insight-engine/keystore/ssl-keystore-passwords.properties
-                -Dalfresco.encryption.ssl.keystore.type=PKCS12
+                -Dalfresco.encryption.ssl.keystore.type=JCEKS
                 -Dalfresco.encryption.ssl.truststore.location=/opt/alfresco-insight-engine/keystore/ssl.repo.client.truststore
                 -Dalfresco.encryption.ssl.truststore.passwordFileLocation=/opt/alfresco-insight-engine/keystore/ssl-truststore-passwords.properties
-                -Dalfresco.encryption.ssl.truststore.type=JKS
+                -Dalfresco.encryption.ssl.truststore.type=JCEKS
             "
         ports:
             - 8083:8983 #Browser port
@@ -201,12 +202,12 @@ services:
             JAVA_OPTS: "
                 -Dalfresco.enable.ssl=true
                 -Dsolr.ssl.checkPeerName=false
-                -Djavax.net.ssl.keyStore=/zeppelin/keystore/solr.p12
+                -Djavax.net.ssl.keyStore=/zeppelin/keystore/ssl.repo.client.keystore
                 -Djavax.net.ssl.keyStorePassword=kT9X6oe68t
-                -Djavax.net.ssl.keyStoreType=PKCS12
+                -Djavax.net.ssl.keyStoreType=JCEKS
                 -Djavax.net.ssl.trustStore=/zeppelin/keystore/ssl.repo.client.truststore
                 -Djavax.net.ssl.trustStorePassword=kT9X6oe68t
-                -Djavax.net.ssl.trustStoreType=JKS
+                -Djavax.net.ssl.trustStoreType=JCEKS
             "
         ports:
             - 9090:9090

@@ -30,3 +30,6 @@ RUN sed -i "s/\
           truststoreFile=\"\/usr\/local\/tomcat\/alf_data\/keystore\/ssl.truststore\"\n\
           truststorePass=\"kT9X6oe68t\" truststoreType=\"JKS\" clientAuth=\"want\" sslProtocol=\"TLS\">\n\
       <\/Connector>/g" ${TOMCAT_DIR}/conf/server.xml
+
+RUN rm /usr/local/tomcat/webapps/alfresco/WEB-INF/lib/alfresco-core-*.jar
+COPY alfresco-core-*.jar /usr/local/tomcat/webapps/alfresco/WEB-INF/lib/

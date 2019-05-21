@@ -31,6 +31,21 @@ http://localhost:9090/zeppelin
 
 SSL Communication from SOLR and Zeppelin (JDBC Driver) is targeted inside Docker Network to https://alfresco:8443/alfresco
 
+
+**Warning**
+
+Current configuration is running with a patched `alfresco-core-7.10.jar` and with a patched `Insight Engine` release (!)
+
+* https://github.com/Alfresco/alfresco-core/tree/fix/SEARCH-1657_ACSOverSSL
+
+* https://git.alfresco.com/search_discovery/InsightEngine/tree/fix/SEARCH-1657_ACSOverSSL
+
+
 ## Generation Tool for custom SSL Certificates
 
 A simple Script has been included in `ssl-tool` folder in order to generate custom *truststores*, *keystores* and *certificates*.
+
+## Additional test cases
+
+* Plain HTTP Configuration is available at `http` folder
+* Default SSL Configuration (using out-of-the-box truststore and keystore) is available at `ssl-default` folder
