@@ -22,6 +22,7 @@ services:
                 -Ddb.username=alfresco
                 -Ddb.password=alfresco
                 -Ddb.url=jdbc:postgresql://postgres:5432/alfresco
+                -Dsolr.host=solr6shard1
                 -Dsolr.useDynamicShardRegistration=true
                 -Dsolr.secureComms=none
                 -Dsolr.base.url=/solr
