@@ -48,4 +48,6 @@ A simple Script has been included in `ssl-tool` folder in order to generate cust
 ## Additional test cases
 
 * Plain HTTP Configuration is available at `http` folder
+* Plain HTTP Configuration with Sharding available at `http-sharding` folder
 * Default SSL Configuration (using out-of-the-box truststore and keystore) is available at `ssl-default` folder
+* Default SSL Configuration with Sharding (using out-of-the-box truststore and keystore) is available at `ssl-sharding` folder
