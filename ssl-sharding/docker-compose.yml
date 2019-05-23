@@ -164,7 +164,7 @@ services:
         environment:
             #Solr needs to know how to register itself with Alfresco
             SOLR_ALFRESCO_HOST: "alfresco"
-            SOLR_ALFRESCO_PORT: "8080"
+            SOLR_ALFRESCO_PORT: "8443"
             #Alfresco needs to know how to call solr
             SOLR_SOLR_HOST: "solr6shard1"
             SOLR_SOLR_PORT: "8983"
@@ -207,7 +207,7 @@ services:
         environment:
             #Solr needs to know how to register itself with Alfresco
             SOLR_ALFRESCO_HOST: "alfresco"
-            SOLR_ALFRESCO_PORT: "8080"
+            SOLR_ALFRESCO_PORT: "8443"
             #Alfresco needs to know how to call solr
             SOLR_SOLR_HOST: "solr6shard2"
             SOLR_SOLR_PORT: "8983"
