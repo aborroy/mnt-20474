@@ -1,6 +1,6 @@
 ARG SEARCH_TAG
-FROM quay.io/alfresco/insight-engine:${SEARCH_TAG}
-# FROM insightengine:develop
+# FROM quay.io/alfresco/insight-engine:${SEARCH_TAG}
+FROM insightengine:develop
 
 ARG SOLR_HOSTNAME
 ARG NUM_SHARDS

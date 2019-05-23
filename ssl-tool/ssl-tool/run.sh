@@ -37,6 +37,7 @@ PASS=kT9X6oe68t
 KEYSTORES_DIR=keystores
 ALFRESCO_KEYSTORES_DIR=keystores/alfresco
 SOLR_KEYSTORES_DIR=keystores/solr
+ZEPPELIN_KEYSTORES_DIR=keystores/zeppelin
 
 # SCRIPT
 
@@ -46,6 +47,12 @@ rm -rf ${KEYSTORES_DIR}
 rm repository.*
 rm solr.*
 rm ssl.*
+
+# Create folders for truststores, keystores and certificates
+mkdir ${KEYSTORES_DIR}
+mkdir ${ALFRESCO_KEYSTORES_DIR}
+mkdir ${SOLR_KEYSTORES_DIR}
+mkdir ${ZEPPELIN_KEYSTORES_DIR}
 
 # Generate a new CA Entity
 mkdir ca
@@ -75,11 +82,6 @@ openssl pkcs12 -export -out repository.p12 -inkey repository.key -in repository.
 openssl req -newkey rsa:$KEY_SIZE -nodes -out solr.csr -keyout solr.key -subj "$SOLR_CLIENT_CERT_DNAME"
 openssl ca -config openssl.cnf -extensions server_cert -passin pass:$PASS -batch -notext -in solr.csr -out solr.cer
 openssl pkcs12 -export -out solr.p12 -inkey solr.key -in solr.cer -certfile ca.cer -password pass:$PASS -certfile ca/certs/ca.cert.pem
-
-# Create folders for truststores, keystores and certificates
-mkdir ${KEYSTORES_DIR}
-mkdir ${ALFRESCO_KEYSTORES_DIR}
-mkdir ${SOLR_KEYSTORES_DIR}
 
 #
 # ALFRESCO
@@ -120,7 +122,6 @@ keytool -importcert -noprompt -alias ssl.repo.client -file solr.cer \
 -keystore ${SOLR_KEYSTORES_DIR}/ssl.repo.client.truststore -storetype JKS -storepass $PASS
 
 # Include SOLR Certificate in SOLR Keystore
-# Also adding CA Certificate for historical reasons
 cp solr.p12 ${SOLR_KEYSTORES_DIR}
 
 # Create SOLR stores password files
@@ -133,3 +134,9 @@ ssl.repo.client.password=$PASS" > ${SOLR_KEYSTORES_DIR}/ssl-truststore-passwords
 ECHO "aliases=1
 keystore.password=$PASS
 1.password=$PASS" > ${SOLR_KEYSTORES_DIR}/ssl-keystore-passwords.properties
+
+#
+# Zeppelin
+#
+cp solr.p12 ${ZEPPELIN_KEYSTORES_DIR}
+cp ${SOLR_KEYSTORES_DIR}/ssl.repo.client.truststore ${ZEPPELIN_KEYSTORES_DIR}/ssl.repo.client.truststore

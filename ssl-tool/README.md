@@ -22,19 +22,23 @@ Once this script has been executed successfully, following resources are generat
 ```
 keystores
 ├── alfresco
+│   ├── repository.p12
 │   ├── ssl-keystore-passwords.properties
 │   ├── ssl-truststore-passwords.properties
-│   ├── ssl.keystore
 │   └── ssl.truststore
-└── solr
-    ├── ssl-keystore-passwords.properties
-    ├── ssl-truststore-passwords.properties
-    ├── ssl.repo.client.keystore
+├── solr
+│   ├── solr.p12
+│   ├── ssl-keystore-passwords.properties
+│   ├── ssl-truststore-passwords.properties
+│   └── ssl.repo.client.truststore
+└── zeppelin
+    ├── solr.p12
     └── ssl.repo.client.truststore
 ```
 
 * `alfresco` files must be copied to "alfresco/keystore" folder in Docker Compose template project (any existing file must be overwritten)
-* `solr` files must be copied to "solr6/keystore" folder and "zeppelin/keystore" folder (for Enterprise) in Docker Compose template project (any existing file must be overwritten)
+* `solr` files must be copied to "solr6/keystore" folder in Docker Compose template project (any existing file must be overwritten)
+* `zeppelin` files must be copied to "zeppelin/keystore" folder in Docker Compose template project (any existing file must be overwritten)
 
 ## Dependencies
 
