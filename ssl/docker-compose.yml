@@ -186,8 +186,6 @@ services:
             "
         ports:
             - 8083:8983 #Browser port
-        volumes:
-            - ./solr6/keystore:/opt/alfresco-insight-engine/keystore
 
     zeppelin:
         build:
@@ -210,8 +208,6 @@ services:
             "
         ports:
             - 9090:9090
-        volumes:
-            - ./zeppelin/keystore:/zeppelin/keystore
 
     activemq:
         image: alfresco/alfresco-activemq:${ACTIVE_MQ_TAG}

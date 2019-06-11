@@ -4,6 +4,9 @@ FROM quay.io/alfresco/insight-zeppelin:${ZEPPELIN_TAG}
 RUN mkdir ${ZEPPELIN_HOME}/keystore \
  && chown -R zeppelin:zeppelin ${ZEPPELIN_HOME}/keystore
 
+ # Copy generated keystore to Image
+ COPY keystore ${ZEPPELIN_HOME}/keystore
+
 ### Add SSL Configuration to Zeppelin Interpreter
 RUN sed -i '/"zeppelin.jdbc.principal":/i \
         "alfresco.enable.ssl": { \n\

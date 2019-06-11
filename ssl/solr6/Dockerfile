@@ -10,4 +10,5 @@ RUN sed -i '/^bash.*/i sed -i "'"s/alfresco.secureComms=none/alfresco.secureComm
 RUN mkdir ${DIST_DIR}/keystore \
  && chown -R solr:solr ${DIST_DIR}/keystore
 
-VOLUME ["${DIST_DIR}/keystore"]
+ # Copy generated keystore to Image
+ COPY keystore ${DIST_DIR}/keystore
