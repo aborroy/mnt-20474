@@ -1,6 +1,5 @@
 ARG SEARCH_TAG
-# FROM quay.io/alfresco/insight-engine:${SEARCH_TAG}
-FROM insightengine:develop
+FROM quay.io/alfresco/insight-engine:${SEARCH_TAG}
 
 # Configure SOLR cores to run in HTTPs mode from template
 RUN sed -i '/^bash.*/i sed -i "'"s/alfresco.secureComms=none/alfresco.secureComms=https/g"'" ${DIST_DIR}/solrhome/templates/rerank/conf/solrcore.properties\n' \
@@ -10,5 +9,5 @@ RUN sed -i '/^bash.*/i sed -i "'"s/alfresco.secureComms=none/alfresco.secureComm
 RUN mkdir ${DIST_DIR}/keystore \
  && chown -R solr:solr ${DIST_DIR}/keystore
 
- # Copy generated keystore to Image
- COPY keystore ${DIST_DIR}/keystore
+# Copy generated keystore to Image
+COPY keystore ${DIST_DIR}/keystore
